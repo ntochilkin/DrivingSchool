@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище DrivingSchoolModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="academicPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idSubject" Type="int" Nullable="false" />
+    <Property Name="hours" Type="int" Nullable="false" />
+    <Property Name="idCategory" Type="int" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="certificate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idStudent" Type="int" Nullable="false" />
+    <Property Name="idPlan" Type="int" Nullable="false" />
+    <Property Name="grade" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="contract">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idStudent" Type="int" Nullable="false" />
+    <Property Name="data" Type="date" Nullable="false" />
+    <Property Name="idGroup" Type="int" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="group">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dateStart" Type="date" Nullable="false" />
+    <Property Name="dateEnd" Type="date" Nullable="false" />
+    <Property Name="idCategory" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="sex" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="bDay" Type="date" Nullable="false" />
+    <Property Name="adress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="passport" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="medicalCertificate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjectName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_academicPlan_category">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="academicPlan" Type="Self.academicPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="academicPlan">
+        <PropertyRef Name="idCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_academicPlan_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="1" />
+    <End Role="academicPlan" Type="Self.academicPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="academicPlan">
+        <PropertyRef Name="idSubject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_certificate_academicPlan">
+    <End Role="academicPlan" Type="Self.academicPlan" Multiplicity="1" />
+    <End Role="certificate" Type="Self.certificate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="academicPlan">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="certificate">
+        <PropertyRef Name="idPlan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_certificate_student">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="certificate" Type="Self.certificate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="certificate">
+        <PropertyRef Name="idStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contract_group">
+    <End Role="group" Type="Self.group" Multiplicity="1" />
+    <End Role="contract" Type="Self.contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="group">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="contract">
+        <PropertyRef Name="idGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contract_student">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="contract" Type="Self.contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="contract">
+        <PropertyRef Name="idStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_group_category">
+    <End Role="category" Type="Self.category" Multiplicity="1" />
+    <End Role="group" Type="Self.group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="group">
+        <PropertyRef Name="idCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище DrivingSchoolModelContainer">
+    <EntitySet Name="academicPlan" EntityType="Self.academicPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="certificate" EntityType="Self.certificate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="contract" EntityType="Self.contract" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="group" EntityType="Self.group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_academicPlan_category" Association="Self.FK_academicPlan_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="academicPlan" EntitySet="academicPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_academicPlan_subject" Association="Self.FK_academicPlan_subject">
+      <End Role="subject" EntitySet="subject" />
+      <End Role="academicPlan" EntitySet="academicPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_certificate_academicPlan" Association="Self.FK_certificate_academicPlan">
+      <End Role="academicPlan" EntitySet="academicPlan" />
+      <End Role="certificate" EntitySet="certificate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_certificate_student" Association="Self.FK_certificate_student">
+      <End Role="student" EntitySet="student" />
+      <End Role="certificate" EntitySet="certificate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contract_group" Association="Self.FK_contract_group">
+      <End Role="group" EntitySet="group" />
+      <End Role="contract" EntitySet="contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contract_student" Association="Self.FK_contract_student">
+      <End Role="student" EntitySet="student" />
+      <End Role="contract" EntitySet="contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_group_category" Association="Self.FK_group_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="group" EntitySet="group" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

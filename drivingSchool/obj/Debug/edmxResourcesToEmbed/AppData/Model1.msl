@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DrivingSchoolModelContainer" CdmEntityContainer="DrivingSchool_Entities">
+    <EntitySetMapping Name="academicPlan">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.academicPlan">
+        <MappingFragment StoreEntitySet="academicPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idSubject" ColumnName="idSubject" />
+          <ScalarProperty Name="hours" ColumnName="hours" />
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="category">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="category1" ColumnName="category" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="certificate">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.certificate">
+        <MappingFragment StoreEntitySet="certificate">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="idPlan" ColumnName="idPlan" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contract">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.contract">
+        <MappingFragment StoreEntitySet="contract">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="group">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.group">
+        <MappingFragment StoreEntitySet="group">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+          <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="student">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="bDay" ColumnName="bDay" />
+          <ScalarProperty Name="adress" ColumnName="adress" />
+          <ScalarProperty Name="passport" ColumnName="passport" />
+          <ScalarProperty Name="medicalCertificate" ColumnName="medicalCertificate" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subject">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.subject">
+        <MappingFragment StoreEntitySet="subject">
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DrivingSchoolModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
